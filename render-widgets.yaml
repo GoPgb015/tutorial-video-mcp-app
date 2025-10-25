@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: tutorial-video-widgets
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build:widgets
+    startCommand: npm run dev:widget-server
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+    # This service only hosts widget assets
+    # The MCP server runs locally and connects to ChatGPT
+    # ChatGPT loads widgets from this deployed URL
