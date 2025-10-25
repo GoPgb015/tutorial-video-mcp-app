@@ -9,7 +9,7 @@
     "dev:apps-sdk": "node apps-sdk/server.js",
     "dev:widget-server": "node apps-sdk/widget-server.js",
     "dev:mcp-server": "node apps-sdk/mcp-server.js",
-    "dev:remote": "node apps-sdk/remote-server.js",
+    "dev:remote": "node apps-sdk/remote-server-fixed.js",
     "build:web": "node web/build.js",
     "build:widgets": "node build-widgets.js",
     "build:all": "npm run build:web && npm run build:widgets",

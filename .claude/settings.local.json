@@ -22,7 +22,8 @@
       "Bash(git commit:*)",
       "Bash(test:*)",
       "Bash(cat:*)",
-      "WebFetch(domain:tutorial-video-widgets.onrender.com)"
+      "WebFetch(domain:tutorial-video-widgets.onrender.com)",
+      "WebFetch(domain:gradeless-mcp.onrender.com)"
     ],
     "deny": [],
     "ask": []
