@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude auth status:*)",
+      "Bash(npm install:*)",
+      "WebFetch(domain:youtube.com)",
+      "Bash(npm run build:web:*)",
+      "WebFetch(domain:youtu.be)",
+      "Bash(start test-videos.html)",
+      "Bash(timeout 5 npm run start:api)",
+      "WebFetch(domain:platform.openai.com)",
+      "WebSearch",
+      "WebFetch(domain:openai.github.io)",
+      "WebFetch(domain:community.openai.com)",
+      "WebFetch(domain:www.eesel.ai)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

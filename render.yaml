@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: tutorial-video-api
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build:web
+    startCommand: npm run dev:api
+    envVars:
+      - key: NODE_ENV
+        value: production
