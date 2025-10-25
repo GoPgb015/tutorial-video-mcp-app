@@ -6,9 +6,13 @@
   "scripts": {
     "dev": "node server/index.js",
     "dev:api": "node api/server.js",
+    "dev:apps-sdk": "node apps-sdk/server.js",
     "build:web": "node web/build.js",
+    "build:widgets": "node build-widgets.js",
+    "build:all": "npm run build:web && npm run build:widgets",
     "start": "npm run build:web && npm run dev",
-    "start:api": "npm run build:web && npm run dev:api"
+    "start:api": "npm run build:web && npm run dev:api",
+    "start:apps-sdk": "npm run build:all && npm run dev:apps-sdk"
   },
   "keywords": [
     "mcp",

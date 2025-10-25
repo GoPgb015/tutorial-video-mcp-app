@@ -12,7 +12,11 @@
       "WebSearch",
       "WebFetch(domain:openai.github.io)",
       "WebFetch(domain:community.openai.com)",
-      "WebFetch(domain:www.eesel.ai)"
+      "WebFetch(domain:www.eesel.ai)",
+      "WebFetch(domain:tutorial-video-mcp-app.onrender.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(npm run build:widgets:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []

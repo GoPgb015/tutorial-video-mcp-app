@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: Tutorial Video API
+  description: API for displaying YouTube tutorial videos inline. Shows videos about AI and Prompt Engineering.
+  version: 1.0.0
+servers:
+  - url: https://tutorial-video-mcp-app.onrender.com
+    description: Production server
+
+paths:
+  /api/videos:
+    get:
+      operationId: listVideos
+      summary: List all tutorial videos
+      description: Returns a list of all available tutorial videos with their IDs, titles, descriptions, and URLs.
+      responses:
+        '200':
+          description: Successful response with video list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  count:
+                    type: integer
+                  videos:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: YouTube video ID
+                        title:
+                          type: string
+                        description:
+                          type: string
+                        url:
+                          type: string
+
+  /api/videos/{id}:
+    get:
+      operationId: getVideo
+      summary: Get details of a specific video
+      description: Returns detailed information about a single tutorial video by its ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: YouTube video ID
+      responses:
+        '200':
+          description: Successful response with video details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  video:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      title:
+                        type: string
+                      description:
+                        type: string
+                      url:
+                        type: string
+        '404':
+          description: Video not found
+
+  /api/embed/{id}:
+    get:
+      operationId: getEmbed
+      summary: Get embed code for a video
+      description: Returns YouTube embed code and embed URL for a specific video.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: YouTube video ID
+      responses:
+        '200':
+          description: Successful response with embed information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  video:
+                    type: object
+                  embedCode:
+                    type: string
+                  embedUrl:
+                    type: string
+        '404':
+          description: Video not found
+
+  /api/player/{id}:
+    get:
+      operationId: getPlayer
+      summary: Get video player URL
+      description: Returns the full URL to view the video in a custom player interface. This is the main endpoint to show videos to users.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: YouTube video ID
+      responses:
+        '200':
+          description: HTML page with video player
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Video not found

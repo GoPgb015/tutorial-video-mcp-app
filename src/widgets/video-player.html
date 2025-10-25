@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial Video Player</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: transparent;
+      padding: 8px;
+    }
+
+    .video-widget {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      max-width: 100%;
+    }
+
+    .video-header {
+      margin-bottom: 12px;
+    }
+
+    .video-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111827;
+      margin: 0 0 4px 0;
+    }
+
+    .video-description {
+      font-size: 14px;
+      color: #6b7280;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #000;
+      margin-bottom: 8px;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-link {
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .video-link a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .video-link a:hover {
+      text-decoration: underline;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <div id="video-root">
+    <div class="loading">Loading video...</div>
+  </div>
+
+  <script>
+    // Widget data injected by Apps SDK
+    const widgetData = window.widgetData || {};
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function renderVideo() {
+      const { videoId, title, description } = widgetData;
+
+      if (!videoId) {
+        document.getElementById('video-root').innerHTML = `
+          <div class="video-widget">
+            <p style="color: #ef4444;">Error: No video ID provided</p>
+          </div>
+        `;
+        return;
+      }
+
+      const headerHtml = (title || description) ? `
+        <div class="video-header">
+          ${title ? `<h3 class="video-title">${escapeHtml(title)}</h3>` : ''}
+          ${description ? `<p class="video-description">${escapeHtml(description)}</p>` : ''}
+        </div>
+      ` : '';
+
+      document.getElementById('video-root').innerHTML = `
+        <div class="video-widget">
+          ${headerHtml}
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/${escapeHtml(videoId)}?rel=0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="video-link">
+            <a href="https://www.youtube.com/watch?v=${escapeHtml(videoId)}" target="_blank" rel="noopener noreferrer">
+              Watch on YouTube ↗
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', renderVideo);
+    } else {
+      renderVideo();
+    }
+
+    // Listen for widget data updates (Apps SDK may update data)
+    window.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'widgetData') {
+        Object.assign(widgetData, event.data.data);
+        renderVideo();
+      }
+    });
+  </script>
+</body>
+</html>

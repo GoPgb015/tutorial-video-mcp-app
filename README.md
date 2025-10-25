@@ -2,12 +2,13 @@
 
 Display YouTube tutorial videos inline in ChatGPT and via HTTP API.
 
-## 🎯 Two Versions Available
+## 🎯 Three Versions Available
 
 1. **Local MCP Server** - Native ChatGPT integration (runs locally)
 2. **HTTP API Server** - Deploy to Render, use anywhere (remote)
+3. **Apps SDK** - Videos display inline in ChatGPT with custom widgets ⭐ **NEW!**
 
-📘 **[Full Deployment Guide →](DEPLOYMENT.md)**
+📘 **Guides:** [Deployment](DEPLOYMENT.md) | [Apps SDK Setup](APPS-SDK-GUIDE.md) | [Apps SDK Summary](APPS-SDK-SUMMARY.md)
 
 ## Your Tutorial Playlist
 
@@ -86,7 +87,27 @@ Display video Xpg2bnO_-eU with show_tutorial_video
 
 ---
 
-### Option 2: HTTP API Server
+### Option 2: Apps SDK (Inline Widgets in ChatGPT) ⭐ **NEW!**
+
+**Best for**: Videos displaying inline inside ChatGPT with custom UI
+
+#### 1. Build and start
+```bash
+npm run start:apps-sdk
+```
+
+#### 2. Connect to ChatGPT
+1. Enable **Developer Mode** in ChatGPT settings
+2. Add MCP server in ChatGPT
+3. Ask: "Show me tutorial videos"
+
+**Videos display inline!** 🎉
+
+**See** `APPS-SDK-GUIDE.md` for complete setup instructions.
+
+---
+
+### Option 3: HTTP API Server
 
 **Best for**: Remote deployment, Custom GPTs, sharing with others
 

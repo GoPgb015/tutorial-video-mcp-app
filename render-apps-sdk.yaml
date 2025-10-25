@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: tutorial-video-apps-sdk
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build:all
+    startCommand: npm run dev:apps-sdk
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: WIDGET_PORT
+        value: 3000
+      - key: WIDGET_URL
+        sync: false
+    # Note: Set WIDGET_URL in Render dashboard to your app's URL
+    # Example: https://tutorial-video-apps-sdk.onrender.com
