@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: gradeless-mcp
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build:widgets
+    startCommand: npm run dev:remote
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: BASE_URL
+        sync: false
+    # Complete MCP server with SSE transport + widget hosting
+    # Connect in ChatGPT:
+    # Name: Gradeless
+    # MCP Server URL: https://gradeless-mcp.onrender.com/sse
+    # Authentication: None

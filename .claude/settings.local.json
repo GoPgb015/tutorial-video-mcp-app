@@ -18,7 +18,11 @@
       "Bash(npm run build:widgets:*)",
       "Bash(git add:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nAdd OpenAI Apps SDK support with inline video widgets\n\nConverted the app to support OpenAI Apps SDK, enabling videos to display\ninline inside ChatGPT using custom widgets instead of external links.\n\nNew Features:\n- Apps SDK MCP server with widget support (apps-sdk/server.js)\n- Custom video player widget component (src/widgets/video-player.html)\n- Widget build system and automation (build-widgets.js)\n- Widget asset compilation to assets/ directory\n- Widget server on port 3001 for serving HTML/CSS/JS\n- MCP responses include widget metadata for inline rendering\n\nBuild System:\n- npm run build:widgets - Compile widget sources to assets\n- npm run build:all - Build web components + widgets\n- npm run start:apps-sdk - Start Apps SDK server with widgets\n\nDocumentation:\n- APPS-SDK-GUIDE.md - Complete setup and deployment guide\n- APPS-SDK-SUMMARY.md - Quick reference and architecture overview\n- CUSTOM-GPT-SETUP.md - Custom GPT creation guide (HTTP API)\n- openapi-schema.yaml - OpenAPI spec for Custom GPT actions\n- render-apps-sdk.yaml - Render deployment config for Apps SDK\n- Updated README.md with Apps SDK option\n\nProject Structure:\n- apps-sdk/ - Apps SDK MCP server\n- src/widgets/ - Widget source files\n- assets/ - Compiled widget bundles (auto-generated)\n\nThree Deployment Options:\n1. Local MCP Server - Simple local testing\n2. HTTP API Server - Remote deployment with Custom GPT\n3. Apps SDK - Inline widgets in ChatGPT (NEW!)\n\nThe Apps SDK version provides the best user experience with videos\ndisplaying natively inside ChatGPT conversations using custom UI.\n\nReady for testing in ChatGPT Developer Mode.\nEOF\n)\")",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git commit:*)",
+      "Bash(test:*)",
+      "Bash(cat:*)",
+      "WebFetch(domain:tutorial-video-widgets.onrender.com)"
     ],
     "deny": [],
     "ask": []
